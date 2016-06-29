@@ -1,0 +1,9 @@
+<div ng-controller="StateTabsController as state">
+    <tabs ng-show="state.Tabs !== null">
+        <div ng-repeat="tabs in state.Tabs">
+            <tab  title="{{tabs.label}}">
+                <div class="jumbotron" style="background:white;"><p>{{tabs.content}}</p></div>
+            </tab>
+        </div>
+    </tabs>
+</div>

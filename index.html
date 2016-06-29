@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-ui-router.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/MainController.js"></script>
+    <script src="controllers/TabsController.js"></script>
+    <script src="controllers/TabController.js"></script>
+    <script src="components/tabs/tabs.module.js"></script>
+    <script src="components/tabs/tabs.component.js"></script>
+    <script src="components/tab/tab.module.js"></script>
+    <script src="components/tab/tab.component.js"></script>
+</head>
+<body ng-controller="MainController as main">
+
+    <div class="container">
+        <div class="header clearfix">
+            <h3 class="text-muted">AngularJS:App</h3>
+        </div>
+        <hr>
+        <!-- Annotation -->
+        <div class="jumbotron">
+            <h2>Тестовое приложение AngularJS</h2>
+            <p class="lead">
+                Для начала работы выберите один из пунктов в checkbox. После выбора нажмите на кнопку.
+                Количество пунктов checkbox изменяется в app.js
+            </p>
+        </div>
+        <hr>
+        <!-- Checkboxes -->
+        <div ng-repeat="obj in main.objects">
+            <input 
+            type="checkbox" 
+            name={{obj.label}} 
+            value={{obj.content}}     
+            ng-checked="selection.indexOf(obj) > -1"
+            ng-click="toggleSelection(obj)"> <span>{{obj.label}} <br> {{obj.content}}</span>
+        </div>
+        <!-- Button to call tabs -->
+        <a ui-sref="tabs({Tabs: selection})">
+            <button class="btn btn-danger navbar-btn" ng-show="checkObjects()">Click me</button>
+        </a>
+        <!-- Tabs -->
+        <div class="custom" ui-view></div>
+
+        <hr>
+        <footer class="footer">
+          <div class="container">
+            <p class="text-muted">© 2016 Inc.</p>
+          </div>
+        </footer>
+    </div>
+</body>
+</html>
